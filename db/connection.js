@@ -2,6 +2,7 @@ const { Pool } = require('pg');
 const is_prod = process.env.NODE_ENV === 'production';
 
 console.log('IS_PROD', is_prod);
+console.log('DB_URL', process.env.DB_URL);
 
 const localConnection = {
   user: 'postgres',
