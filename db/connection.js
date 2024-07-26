@@ -11,7 +11,7 @@ const renderConnection = {
   connectionString: process.env.DB_URL
 }
 
-const connectObj = is_prod ? localConnection : renderConnection;
+const connectObj = is_prod ? renderConnection : localConnection;
 
 console.log('connect object', connectObj);
 
