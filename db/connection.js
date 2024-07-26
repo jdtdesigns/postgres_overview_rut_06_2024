@@ -11,7 +11,10 @@ const localConnection = {
 };
 
 const renderConnection = {
-  connectionString: process.env.DB_URL
+  host: 'dpg-cqhuq29u0jms739dn570-a',
+  user: 'jd',
+  password: 'B5ppbPBxTfyYPxbI7JcauN1xmY8cSo4p',
+  database: 'testing_db_3h13'
 }
 
 const client = new Pool(is_prod ? localConnection : renderConnection);
