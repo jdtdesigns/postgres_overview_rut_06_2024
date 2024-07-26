@@ -8,7 +8,10 @@ const localConnection = {
 };
 
 const renderConnection = {
-  connectionString: process.env.DB_URL
+  connectionString: process.env.DB_URL,
+  ssl: {
+    rejectUnauthorized: false, // Set to false to bypass SSL certificate validation (not recommended for production)
+  },
 }
 
 const connectObj = is_prod ? renderConnection : localConnection;
