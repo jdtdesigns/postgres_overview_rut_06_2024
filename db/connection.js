@@ -16,8 +16,6 @@ const renderConnection = {
 
 const connectObj = is_prod ? renderConnection : localConnection;
 
-console.log('connect object', connectObj);
-
 const client = new Pool(connectObj);
 
 module.exports = client;
