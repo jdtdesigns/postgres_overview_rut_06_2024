@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const Query = require('../lib/Query');
-
+const { Course, Student, Group } = require('../models');
 // GET ROUTES
 
 // GET route to send all students
@@ -14,7 +13,9 @@ router.get('/students', async (request, response) => {
 // GET route to send all courses
 // localhost:3333/api/courses
 router.get('/courses', async (request, response) => {
-  const courses = await Query.getCourses();
+  console.log('something');
+  // findAll returns all rows in the table
+  const courses = await Course.findAll();
 
   response.json(courses);
 });
@@ -27,10 +28,12 @@ router.get('/courses', async (request, response) => {
 router.post('/courses', async (request, response) => {
   const formData = request.body;
 
-  await Query.addCourse(formData);
+  // Insert a new row into the courses table
+  const course = await Course.create(formData);
 
   response.json({
-    message: 'Course created successfully!'
+    message: 'Course created successfully!',
+    course: course
   });
 });
 
@@ -39,7 +42,7 @@ router.post('/courses', async (request, response) => {
 router.post('/students', async (request, response) => {
   const formData = request.body;
 
-  await Query.addStudent(formData);
+  const student = await Student.create(formData);
 
   response.json({
     message: 'Student created successfully!'
