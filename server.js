@@ -17,7 +17,7 @@ app.use(cors());
 app.use('/api', api_routes);
 
 // If you do not set force back to false, it will delete all of your tables when the file runs
-client.sync({ force: true })
+client.sync({ force: false })
   .then(() => {
     console.log('DB Connected');
 

@@ -26,12 +26,22 @@ Course.init(
 // One To Many
 Course.hasMany(Student, {
   foreignKey: {
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'The courseId field must be provided with a valid id of a course.'
+      }
+    }
   }
 });
 Student.belongsTo(Course, {
   foreignKey: {
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'The courseId field must be provided with a valid id of a course.'
+      }
+    }
   }
 });
 

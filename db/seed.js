@@ -44,7 +44,8 @@ client.sync({ force: true })
       {
         first_name: 'Jane',
         last_name: 'Doe',
-        courseId: 1
+        courseId: 1,
+        groupId: 2
       },
       {
         first_name: 'Will',
@@ -59,4 +60,5 @@ client.sync({ force: true })
     ]);
     console.log('Students created.');
 
+    process.exit();
   });

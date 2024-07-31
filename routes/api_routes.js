@@ -5,7 +5,14 @@ const { Course, Student, Group } = require('../models');
 // GET route to send all students
 // localhost:3333/api/students
 router.get('/students', async (request, response) => {
-  const students = await Query.getStudents();
+  const students = await Student.findAll({
+    include: [Course, Group],
+    order: [['id', 'ASC']]
+  });
+
+  // const plainData = students.map(studentObj => studentObj.get({ plain: true }));
+
+  // console.log(plainData[2].course.course_name);
 
   response.json(students);
 });
@@ -42,11 +49,22 @@ router.post('/courses', async (request, response) => {
 router.post('/students', async (request, response) => {
   const formData = request.body;
 
-  const student = await Student.create(formData);
+  try {
+    const student = await Student.create(formData);
 
-  response.json({
-    message: 'Student created successfully!'
-  });
+    response.json({
+      message: 'Student created successfully!',
+      student: student
+    });
+  } catch (error) {
+    const errors = error.errors.map((errObj) => {
+      return {
+        message: errObj.message
+      }
+    });
+
+    response.json(errors);
+  }
 });
 
 
